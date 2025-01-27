@@ -37,20 +37,20 @@ int creat_data_base(Hash *arr,Slist **head)
                        
                         int i=0,count=0,index;
                         
-                          if(file_wrd[0]>='0'&&file_wrd[0]<='9')
-                          {
-                                index=26;
-                          }
-                          else if(file_wrd[0] >= 32 && file_wrd[0] <= 47||file_wrd[0] >= 60&& file_wrd[0] <= 64)
-                          {
-                            index=27;
-                          }
-                          else{
-                             index=file_wrd[0] % 97;
-                            
-                          }
-                      
+                       
+        if (file_wrd[0] >= '0' && file_wrd[0] <= '9') {
+            index = 26;
+        } 
+        else if ((file_wrd[0] >= 32 && file_wrd[0] <= 47) || (file_wrd[0] >= 60 && file_wrd[0] <= 64)) {
+            index = 27;
+        } 
+        else {
+            index = file_wrd[0] % 97;
+        }
+
+        
                         int flag=0,flag1=0;
+                         
             Main *new_m_node=malloc(sizeof(Main));
             if(new_m_node == NULL)
             {
@@ -65,6 +65,7 @@ int creat_data_base(Hash *arr,Slist **head)
 
             if(arr[index].hash_link == NULL)
             {
+              
                  arr[index].hash_link=new_m_node;
                  new_m_node->file_count=1;
 
@@ -84,12 +85,15 @@ int creat_data_base(Hash *arr,Slist **head)
             }
             else
             {
-                        
+                               
+                         
                            Main *temp_for_main = arr[index].hash_link;
                     while (temp_for_main != NULL)
                      {
+                     
                         if(strcmp(temp_for_main->word,file_wrd)==0)
                         {
+                               
                                     flag=1;
                                   Sub *temp3 =temp_for_main->sub_link ;
                                    while( temp3 != NULL)
@@ -104,8 +108,11 @@ int creat_data_base(Hash *arr,Slist **head)
                                             break;
                                            }
                                             temp3=temp3->sub_link;
+                                            
                                     }
+                                    
                                     if(flag1!=1){
+                                         
                                      if(!(strcmp((temp_for_main->sub_link)->filename,file_Lname)==0))
                                     {
                                         
@@ -132,24 +139,27 @@ int creat_data_base(Hash *arr,Slist **head)
                                                             }
                                                             temp3->sub_link=new_S_node;
                                     }
-                                    }
+                                 }
                                     
                                     break;
                         }
-                       
-                    
+                      
+                 
                         if(temp_for_main->main_link==NULL)
                             {
                                 break;
                             }
                         temp_for_main = temp_for_main->main_link;
+                        
                     }
 
-                
+               
                    if(flag!=1)
                    {
+                      
                     temp_for_main->main_link = new_m_node;
                    temp_for_main=temp_for_main->main_link;
+                  
 
                                                         Sub *new_S_node=malloc(sizeof(Sub));
                                                             if(new_S_node == NULL)
@@ -164,9 +174,11 @@ int creat_data_base(Hash *arr,Slist **head)
                                                             new_S_node->sub_link=NULL;
                                                             
                                                             temp_for_main->sub_link=new_S_node;
+                                                            
                    }
-                   }
-                                                          
+                    
+             }
+                                                         
                     }
             temp=temp->link;
        }

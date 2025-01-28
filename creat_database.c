@@ -18,9 +18,6 @@ int creat_data_base(Hash *arr,Slist **head)
     while(temp!=NULL)
     {
        char *file_Lname=temp->file;
-      
-    
-      
         FILE *file_ptr;
         file_ptr=fopen(file_Lname,"r");
         if(file_ptr==NULL)
@@ -29,7 +26,6 @@ int creat_data_base(Hash *arr,Slist **head)
             temp = temp->link;
             continue;
         }
-   
          char file_wrd[100];
 
        while( fscanf(file_ptr,"%99s",file_wrd)==1)
@@ -48,7 +44,6 @@ int creat_data_base(Hash *arr,Slist **head)
             index = file_wrd[0] % 97;
         }
 
-        
                         int flag=0,flag1=0;
                          
             Main *new_m_node=malloc(sizeof(Main));
@@ -57,7 +52,6 @@ int creat_data_base(Hash *arr,Slist **head)
                 printf("Node not creaed\n");
                 return FAILURE;
             }
-            
             strcpy(new_m_node->word, file_wrd);
             new_m_node->main_link=NULL;
             new_m_node->file_count=1;
@@ -84,9 +78,7 @@ int creat_data_base(Hash *arr,Slist **head)
                                         
             }
             else
-            {
-                               
-                         
+            {              
                            Main *temp_for_main = arr[index].hash_link;
                     while (temp_for_main != NULL)
                      {
